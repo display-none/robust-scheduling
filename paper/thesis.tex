@@ -1,0 +1,40 @@
+\documentclass{article} 
+\usepackage[T1]{fontenc}
+%\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{mathtools}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{amsthm}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Def}[section]
+
+\newtheorem{theorem}{Tw}[section]
+
+%%% fix for \lll
+\let\babellll\lll
+\let\lll\relax
+
+\usepackage{amssymb}
+
+%%% fix for \lll
+\let\mathlll\lll
+\let\lll\babellll
+
+
+\usepackage{pdflscape}
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+
+\begin{document} 
+
+\title{Robust constraint-based scheduling with activity duration scenario sets}
+\author{Jacek Hoła}
+\date{\today}
+\maketitle
+
+
+\end{document}
