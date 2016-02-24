@@ -1,6 +1,6 @@
 \documentclass{article} 
 \usepackage[T1]{fontenc}
-%\usepackage[polish]{babel}
+\usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
 \usepackage{mathtools}
@@ -35,6 +35,35 @@
 \author{Jacek Hoła}
 \date{\today}
 \maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Main problem and related concepts}
+In this section we will introduce the main problem considered in this paper and define concepts needed in following sections. Firstly, the Resource-Constrained Project Scheduling Problem is defined, then ...
+
+\subsection{What is Constraint Programming and how does it apply to scheduling?}
+
+\subsection{General principles of scheduling}
+Scheduling can most generally be defined as a problem of allocating scarce resources to activities over time \cite{Baker:Introduction}
+
+\subsection{Resource-Constrained Project Scheduling Problem}
+The problem we are considering is based on Resource-Constrained Project Scheduling Problem (RCPSP), which is a fairly generic framework to describe scheduling problems encountered in industry and academic discussions. It consists of a set of $n$ \textit{activities} $\{A_1, A_2, ..., A_n\}$ with fixed processing times $proc(A_i)$ or $p_i$ (activity duration) and a set of $m$ resources $\{R_1, R_2, ..., R_m\}$ of specified capacity $cap(R_i)$. Each activity $A_i$ requires $cap(A_i, R)$ of resource $R$ during its execution and at any given time the sum of the requirements from all executing activities cannot exceed the resource capacity. Formally, for all times t:
+
+$$
+\sum_{A_i : start(A_i) \leq t < end(A_i)} cap(A_i, R) \leq cap(R)
+$$
+
+$start(A_i)$ and $end(A_i)$ used here are variables describing the start time and end time of the activity $A_i$, respectively. When activities cannot be interrupted (are non-preemptive) it follows that $end(A_i) = start(A_i) + proc(A_i)$. We would only consider non-preemptive problems, so to define a schedule it suffices to produce a vector of start times $\langle start(A_1), ..., start(A_n)\rangle$.
+
+In addition to mentioned constraints the activities can have release dates, due dates, deadlines and be subject to precedence constraints. A release date is a time before which the activity cannot execute. A due date is a time before which the activity is expected to end and similarly, a deadline is a time before which the activity has to end. Precedence constraints can be defined in several ways. An activity can be constrained to start after the start of some other activity, start after the end of some other activity or some defined time after either of these.
+
+
+
+
+\bibliographystyle{plain}
+\bibliography{thesis}
 
 
 \end{document}
