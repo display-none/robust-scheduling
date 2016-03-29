@@ -43,7 +43,7 @@
 \section{Introduction}
 
 \section{Main problem and related concepts}
-In this section we will introduce the problem we will be considering and concepts directly related to its formulation.
+In this section we will introduce the problem we will be considering and concepts directly related to its formulation. Firstly, we'll introduce main ideas of scheduling, next its general formulation, popular in the field - Resource-constrained Project Scheduling Problem. Then we will quickly explain the notation used to describe scheduling problems - the Graham's notation. Finally, we'll try to formulate the problem of the thesis.
 
 
 \subsection{General principles of scheduling}
@@ -67,44 +67,81 @@ In addition to mentioned constraints the activities can have release dates, due 
 
 
 \subsection{Graham's notation}
+// shortly describe what is graham's notation
 
 \subsection{Problem formulation}
+The problem we will tackle in this thesis is a variation of RCPSP. Using Graham's notation we can classify it as $P_m | r_i, prec | C_{max}$. That means we have $m$ identical machines and our goal is to schedule some number of activities, each having a release date and possibly being constrained to start after the end of some other activities, such that the makespan of the schedule is minimal. Each activity is executed on one machine, that means it requires one unit of the resource representing machines. The schedule is non-preemptive, i.e. the activities cannot be interrupted once started.
 
+Formally, given a set of $n$ activites $\{A_1, A_2, ..., A_n\}$ with release dates $r_i$, processing times $p_i$ and deadlines $d_i$, a resource $R$ of capacity $m$, unit resource requirement for each activity and a set of precedence constraints $P = \{(A_i, A_j) : A_i \text{ must precede } A_j\}$, produce a schedule $S = (start(A_1), start(A_2), ..., start(A_n))$, such that
 
+\begin{align}
+&\text{for all times t} \nonumber\\
+&card(\{A_i : start(A_i) \leq t < start(A_i) + p_i\}) \leq m
+\end{align}
+\begin{align}
+\forall_{1 \leq i \leq n} r_i \leq start(A_i)
+\end{align}
+\begin{align}
+\forall_{1 \leq i \leq n} start(A_i) + p_i \leq d_i
+\end{align}
+\begin{align}
+\forall (A_i, A_j) \in P, start(A_i) + p_i \leq start(A_j)
+\end{align}
+\begin{align}
+C_{max} = \max_{1 \leq i \leq n} start(A_i) + p_i
+\end{align}
+
+and $C_{max}$ is minimal. For sake of brevity we will use additional variable $end(A_i) = start(A_i) + p_i$. Through the binding to $start(A_i)$ it does not increase complexity and is used strictly for convenience. Additionally we will use $lst(A_i)$ as a latest start time of activity $A_i$ (the latest time $A_i$ can possibly start so it can be finished before its deadline), initially $lst(A_i) = d_i - p_i$. $eet(A_i)$ will denote earliest end time, the earliest possible end time of the activity, initially $eet(A_i) = r_i + p_i$. These times are dynamic, it can turn out there are other activities that have to execute around $r_i$, such that no machine is available. Then $eet(A_i)$ would have to be adjusted and no longer equal to $r_i + p_i$.
+
+In case of problem instances where some deadlines are not specified, it suffices to set them to some high value (end of the schedule horizon). When we describe the method of optimization it will become clear how to find this number.
+
+Note that this formulation is not final, it will be modified in following sections to accommodate uncertainty.
 
 \section{Robustness and uncertainty}
+// what is in this section
 
 \subsection{In general}
+// why do we bother and how it is done in general
 
 \subsection{In scheduling}
+// how can we model uncertainty in scheduling, what is being done in this area
 
 \subsection{In our problem}
-
+// talk about scenario sets for processing times and finish formal problem formulation
 
 
 
 \section{Solution - Constraint Programming}
+// what is in this section
 
 \subsection{What is Constraint Programming and how does it apply to scheduling?}
+// self-descriptive
 
 \subsection{Constraint propagation algorithms for scheduling}
+// mention general principles behind propagation algorithms for scheduling and enumerate most popular
 
 \subsection{Precedence Constraint Posting}
+// say what it is and how does it help to solve our problem
 
 \subsection{Proposed solution}
+// try to sum up everything from previous subsections to clearly describe the solution
 
 
 \section{Computational results}
+// what is in this section
 
 \subsection{Experiment description}
+// what kind of experiments are carried
 
 \subsection{Problem instances}
+// describe the instances in general
 
 \subsection{Results}
+// present the results and comment on them
 
 
 \section{Conclusions}
-
+// say what was the outcome, what can further be done and throw in a few nice sounding sentences to have a pretty closing
 
 
 \bibliographystyle{plain}
